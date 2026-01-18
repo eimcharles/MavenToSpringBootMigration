@@ -1,0 +1,29 @@
+name: Java CI for Maven to Spring Boot Migration Repository
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven Wrapper
+        run: chmod +x mvnw && ./mvnw -B package
+
+      - name: Update dependency graph
+        uses: advanced-security/maven-dependency-submission-action@v4
