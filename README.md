@@ -1,6 +1,6 @@
 ### Maven to SpringBoot Migration
 
-#### This repository serves as a working example demonstrating the migration of a Maven project to the Spring Boot ecosystem with autoconfiguration and embedded server support.
+#### This repository serves as a working example demonstrating the migration of a Maven project to the Spring Boot ecosystem with auto-configuration and embedded server support.
 
 ![Java](https://img.shields.io/badge/Java-21-007396?logo=openjdk&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-4.0-C71A36?logo=apache-maven&logoColor=white)
