@@ -14,7 +14,7 @@
         for the project to inherit a pre-defined
         set of configurations, dependencies,
         and plugin management from the
-        spring boot starter parent
+        spring-boot-starter-parent project
     -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,14 +23,17 @@
         <relativePath/>
     </parent>
 
+    <!--  Project Meta Data  -->
     <groupId>com.eimc</groupId>
     <artifactId>MavenToSpringBootMigration</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--  Project Meta Data  -->
     <name>mavenToSpringBoot</name>
     <description>Migration project from Maven to Spring Boot</description>
     <url>https://github.com/eimcharles/MavenToSpringBootMigration</url>
 
+    <!--  Project Meta Data  -->
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -38,6 +41,7 @@
         </license>
     </licenses>
 
+    <!--  Project Meta Data  -->
     <developers>
         <developer>
             <name>Charles</name>
@@ -46,31 +50,28 @@
         </developer>
     </developers>
 
+    <!--  Project Meta Data  -->
     <scm>
         <connection>scm:git:git://github.com/eimcharles/MavenToSpringBootMigration.git</connection>
         <developerConnection>scm:git:git@github.com:eimcharles/MavenToSpringBootMigration.git</developerConnection>
         <url>https://github.com/eimcharles/MavenToSpringBootMigration</url>
     </scm>
 
+    <!--  Project SKD version-->
     <properties>
         <java.version>21</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <!--
+        The build tag defines how Maven will
+        build and package the application,
+        specifically focusing on creating an
+        executable repackaged Java Archive (JAR) file.
 
-    The build tag defines how Maven will
-    build and package the application,
-    specifically focusing on creating an
-    executable Java Archive (JAR) file.
-
-    Executable Artifact: In the context of Maven,
-    and Spring boot the main class is annotated
-    with @SpringBootApplication which tells the final
-    executable JAR file where to begin execution.
-
+        Executable Artifact: In the context of Maven,
+        and Spring boot the main class is annotated
+        with @SpringBootApplication which tells the final
+        executable JAR file where to begin execution.
     -->
     <build>
         <plugins>
@@ -78,21 +79,44 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
         </plugins>
     </build>
 
     <dependencies>
 
+        <!--   For Spring MVC, contains embedded webserver   -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+
         </dependency>
 
+        <!--   For testing the application    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <!--    Not added to Jar file, only for testing        -->
             <scope>test</scope>
+        </dependency>
+
+        <!--  Store and retrieve data from SQL database using Java Objects  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--  Communication between Application and mySQL database   -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--  Used for custom HTTP response class  -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
