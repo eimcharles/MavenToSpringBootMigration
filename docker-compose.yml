@@ -1,0 +1,34 @@
+
+services:
+  # Database mySQL container
+  database:
+    image: mysql:${MYSQL_VERSION}
+    container_name: ${DB_CONTAINER_NAME}
+    ports:
+      ## host_port:container_port
+      - "${HOST_DB_PORT}:3306"
+    environment:
+      # Variables configure the database engine on its first startup.
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # Spring Boot application container and its connection to the SQL database.
+  app:
+    build: src/main/java
+    container_name: ${APP_CONTAINER_NAME}
+    ports:
+      ## Maps local browser ports to embedded server
+      - "${HOST_APP_PORT}:8080"
+    depends_on:
+      # App waits for the DB to start before starting.
+      - database
+    environment:
+      # Injects environment-specific settings into the application.yml at runtime.
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+volumes:
+  db_data:
